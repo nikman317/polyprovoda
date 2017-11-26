@@ -14,6 +14,8 @@
 #include <qwt_picker_machine.h>
 #include <qwt_plot_zoomer.h>
 #include <QPushButton>
+#include <QTimer>
+
 namespace Ui {
 class MainWindow;
 }
@@ -33,12 +35,30 @@ private slots:
 
 	void on_chooseMobility_clicked();
 
+	void update();
+
+
+	void on_mintemp_editingFinished();
+
+	void on_maxtemp_editingFinished();
+
+	void on_mc_editingFinished();
+
+	void on_mv_editingFinished();
+
 private:
 	Ui::MainWindow *ui;
 
 	QwtPlot *currentPlot;
 	QPushButton * currentbutton;
-
+	QTimer* timer;
+	double* concentrationElectronData;
+	double* concentrationHolesData;
+	double* temperature;
+	int temperatureInterval;
+	int firstTempValue;
+	double m0Electron;
+	double m0Heoles;
 void createGraphs();
 void createMenu();
 };
